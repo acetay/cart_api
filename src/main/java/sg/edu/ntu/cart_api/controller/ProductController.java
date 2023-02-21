@@ -24,10 +24,24 @@ public class ProductController {
         return "GET /products is being called";
     }
     
+    // @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    // public String findById(@PathVariable int id){
+    //     return "GET /products/"+id+" is being called";
+    // }
+
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public String findById(@PathVariable int id){
-        return "GET /products/"+id+" is being called";
+    public String findById(@PathVariable int id) {
+    if (id == 1) {
+        return "This is detail for ID: " + id + "\nProduct Name: Apple";
+    } else if (id == 2) {
+        return "This is detail for ID: " + id + "\nProduct Name: Banana";
+    } else if (id == 3) {
+        return "This is detail for ID: " + id + "\nProduct Name: Carrot";
+    } else {
+        return "No product found";
     }
+}
+
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody Product create(@RequestBody Product product){
