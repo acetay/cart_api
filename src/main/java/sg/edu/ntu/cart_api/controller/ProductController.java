@@ -32,11 +32,11 @@ public class ProductController {
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public String findById(@PathVariable int id) {
     if (id == 1) {
-        return "This is detail for ID: " + id + "\nProduct Name: Apple";
+        return "This is detail for ID: " + id + " Product Name: Apple";
     } else if (id == 2) {
-        return "This is detail for ID: " + id + "\nProduct Name: Banana";
+        return "This is detail for ID: " + id + " Product Name: Banana";
     } else if (id == 3) {
-        return "This is detail for ID: " + id + "\nProduct Name: Carrot";
+        return "This is detail for ID: " + id + " Product Name: Carrot";
     } else {
         return "No product found";
     }
