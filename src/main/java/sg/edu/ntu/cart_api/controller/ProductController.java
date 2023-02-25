@@ -1,7 +1,6 @@
 package sg.edu.ntu.cart_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,16 +30,16 @@ public class ProductController {
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public String findById(@PathVariable int id) {
-    if (id == 1) {
-        return "This is detail for ID: " + id + " Product Name: Apple";
-    } else if (id == 2) {
-        return "This is detail for ID: " + id + " Product Name: Banana";
-    } else if (id == 3) {
-        return "This is detail for ID: " + id + " Product Name: Carrot";
-    } else {
-        return "No product found";
+        if (id == 1) {
+            return "This is detail for ID: " + id + " Product Name: Apple";
+        } else if (id == 2) {
+            return "This is detail for ID: " + id + " Product Name: Banana";
+        } else if (id == 3) {
+            return "This is detail for ID: " + id + " Product Name: Carrot";
+        } else {
+            return "No product found";
+        }
     }
-}
 
 
     @RequestMapping(method = RequestMethod.POST)
@@ -63,6 +62,4 @@ public class ProductController {
     }
   
 }
-/*
-*./mvnw spring-boot:run
- */ 
+//./mvnw spring-boot:run
