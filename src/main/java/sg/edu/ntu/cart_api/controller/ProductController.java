@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import sg.edu.ntu.cart_api.entity.Product;
 import sg.edu.ntu.cart_api.service.ProductService;
 
@@ -15,11 +18,14 @@ import sg.edu.ntu.cart_api.service.ProductService;
 @RequestMapping("/products")
 public class ProductController {
 
+    private static final Logger logger = LoggerFactory.getLogger    (ProductController.class);
+
     @Autowired
     ProductService service;
     
     @RequestMapping(method = RequestMethod.GET)
     public String findAll(){
+        logger.info("GET /products is being called");
         return "GET /products is being called";
     }
     
@@ -30,6 +36,7 @@ public class ProductController {
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public String findById(@PathVariable int id) {
+        logger.info("GET /products/{} is being called", id);
         if (id == 1) {
             return "This is detail for ID: " + id + " Product Name: Apple";
         } else if (id == 2) {
@@ -44,12 +51,14 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody Product create(@RequestBody Product product){
+        logger.info("POST /products is being called");
         return product;
     }
 
     // Update an entity
     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
     public Product update(@RequestBody Product product, @PathVariable int id){
+        logger.info("PUT /products/{} is being called", id);
         product.setId(id);
         return product;
     }
@@ -58,8 +67,10 @@ public class ProductController {
     // Delete an entity
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int id){
+        logger.info("DELETE /products/{} is being called", id);
         System.out.println("DELETE /products/"+id+" is being called");        
     }
   
 }
 //./mvnw spring-boot:run
+
