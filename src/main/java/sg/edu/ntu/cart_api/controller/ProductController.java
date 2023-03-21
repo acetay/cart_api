@@ -22,13 +22,19 @@ public class ProductController {
 
     @Autowired
     ProductService service;
-    
+
     @RequestMapping(method = RequestMethod.GET)
-    public String findAll(){
+    public @ResponseBody Product findAll() {
         logger.info("GET /products is being called");
-        return "GET /products is being called";
+        Product product = new Product();
+        product.setId(1);
+        product.setName("Sample Product");
+        product.setDescription("This is a sample product");
+        product.setPrice(10.0f);
+        return product;
     }
-    
+
+
     // @RequestMapping(value="/{id}", method = RequestMethod.GET)
     // public String findById(@PathVariable int id){
     //     return "GET /products/"+id+" is being called";
@@ -49,11 +55,28 @@ public class ProductController {
     }
 
 
+//    @RequestMapping(method = RequestMethod.POST)
+//    public @ResponseBody Product create(@RequestBody Product product){
+//        logger.info("POST /products is being called");
+//        return product;
+//    }
+
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody Product create(@RequestBody Product product){
         logger.info("POST /products is being called");
-        return product;
+
+        // Create a new Product object with the data from the request body
+        Product newProduct = new Product();
+        newProduct.setName(product.getName());
+        newProduct.setDescription(product.getDescription());
+        newProduct.setPrice(product.getPrice());
+
+        // You can also persist the new product in a database using a ProductService or a DAO layer
+
+        // Return the newly created Product object
+        return newProduct;
     }
+
 
     // Update an entity
     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
