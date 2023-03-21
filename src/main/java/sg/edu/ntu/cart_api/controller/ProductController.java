@@ -65,15 +65,11 @@ public class ProductController {
     public @ResponseBody Product create(@RequestBody Product product){
         logger.info("POST /products is being called");
 
-        // Create a new Product object with the data from the request body
         Product newProduct = new Product();
         newProduct.setName(product.getName());
         newProduct.setDescription(product.getDescription());
         newProduct.setPrice(product.getPrice());
 
-        // You can also persist the new product in a database using a ProductService or a DAO layer
-
-        // Return the newly created Product object
         return newProduct;
     }
 
